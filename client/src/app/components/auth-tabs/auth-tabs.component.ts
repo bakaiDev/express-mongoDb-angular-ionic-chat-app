@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as M from 'materialize-css';
 @Component({
   selector: 'app-auth-tabs',
   templateUrl: './auth-tabs.component.html',
@@ -10,6 +10,8 @@ export class AuthTabsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const tabs = document.querySelector('.tabs');
+    M.Tabs.init(tabs, {});
   }
 
 }
