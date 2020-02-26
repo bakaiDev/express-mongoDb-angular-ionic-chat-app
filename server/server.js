@@ -3,8 +3,10 @@ const mongoose = require('mongoose');
 
 const app = express();
 
+const dbConfig = require('./config/secret');
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/socialapp', { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, (err, res) => {
+mongoose.connect(dbConfig.url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, (err, res) => {
     if (err) {
         console.log(err);
     }
