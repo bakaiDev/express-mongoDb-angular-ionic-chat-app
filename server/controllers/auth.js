@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const HttpStatus = require('http-status-codes');
+const bcrypt = require('bcryptjs');
 
 const User = require('../models/userModels');
 const Helpers = require('../Hellpers/helper');
@@ -35,6 +36,22 @@ module.exports = {
        if (userName) {
            return res.status(HttpStatus.CONFLICT).json({message: 'Username already exist'});
        }
+
+       return  bcrypt.hash(value.password, 10, (err,  hash) => {
+           if (err) {
+               return res.status(HttpStatus.BAD_REQUEST).json({message: 'Error hashing password'});
+           }
+           const body = {
+               userName: Helpers.firstUpper(value.userName),
+               email: Helpers.lowerCase(value.email),
+               password: hash
+           };
+           User.create(body).then((user) => {
+               res.status(HttpStatus.CREATED).json({message: 'User created successfully', user})
+           }).catch(err => {
+               res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error save to db'})
+           });
+       })
     }
 };
 
