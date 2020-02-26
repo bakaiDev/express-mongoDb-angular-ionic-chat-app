@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const HttpStatus = require('http-status-codes');
 
 module.exports = {
     CreateUser(req, res) {
@@ -20,7 +21,7 @@ module.exports = {
         const {error, value} = schema.validate(req.body);
 
         if (error && error.details) {
-            return res.status(500).json({message: error.details});
+            return res.status(HttpStatus.BAD_REQUEST).json({message: error.details});
         }
     }
 };
