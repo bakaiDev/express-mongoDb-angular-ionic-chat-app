@@ -17,6 +17,10 @@ mongoose.connect(dbConfig.url, { useUnifiedTopology: true, useNewUrlParser: true
     }
 });
 
+const auth = require('./routes/authRoutes');
+
+app.use('/api/chatapp', auth);
+
 app.listen('3000', () => {
     console.log('Running server on port 3000')
 });
