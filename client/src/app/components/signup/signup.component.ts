@@ -9,6 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  errorMessage: string;
 
   constructor(private authService: AuthService,
               private fb: FormBuilder
@@ -31,7 +32,12 @@ export class SignupComponent implements OnInit {
       console.log(data);
       this.signupForm.reset();
     }, error => {
-      console.log(error);
+      if (error.error.msg) {
+        this.errorMessage = error.error.msg[0].message;
+      }
+      if (error.error.message) {
+        this.errorMessage = error.error.message;
+      }
     });
   }
 }
