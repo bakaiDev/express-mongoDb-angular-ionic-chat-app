@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TokenService} from "../../services/token.service";
-import {Router} from "@angular/router";
+import {TokenService} from '../../services/token.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
