@@ -1,10 +1,25 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {TokenService} from './services/token.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'client';
+export class AppComponent implements OnInit {
+
+  constructor(private router: Router,
+              private tokenService: TokenService
+  ) {
+
+  }
+  ngOnInit(): void {
+    const token = this.tokenService.getToken();
+    if (token) {
+      this.router.navigate(['streams']);
+    } else {
+      this.router.navigate(['']);
+    }
+  }
 }
