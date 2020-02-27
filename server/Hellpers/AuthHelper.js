@@ -4,10 +4,17 @@ const dbConfig = require('../config/secret');
 
 module.exports = {
     VerifyToken : (req, res, next) => {
-        const token = req.cookies.auth;
-        if (token) {
+
+        if (!req.headers.authorization) {
+            return res.status(HttpStatus.UNAUTHORIZED).json({message: 'No Authorization'})
+        }
+
+        const token = req.cookies.auth || req.headers.authorization.split(' ')[1];
+
+        if (!token) {
             return res.status(HttpStatus.FORBIDDEN).json({message: 'No token provided'})
         }
+
         return jwt.verify(token, dbConfig.secret, (err, decoded) => {
             if (err) {
                 if (err.expiredAt < new Date()) {
@@ -18,7 +25,7 @@ module.exports = {
                 }
                 next();
             }
-            req.user = decoded;
+            req.user = decoded.data;
             next();
         });
     }
