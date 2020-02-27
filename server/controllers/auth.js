@@ -62,7 +62,7 @@ module.exports = {
     },
 
    async LoginUser(req, res) {
-        if (req.body.username || !req.body.password) {
+        if (!req.body.username || !req.body.password) {
             return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'No empty fields allowed'})
         }
         await User.findOne({username: Helpers.firstUpper(req.body.username)})
