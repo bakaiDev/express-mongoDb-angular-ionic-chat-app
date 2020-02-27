@@ -1,5 +1,5 @@
 module.exports = {
     AddPost(req, res) {
-        console.log(res.body)
+        console.log(req.body)
     }
 };
