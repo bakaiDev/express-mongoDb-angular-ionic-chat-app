@@ -1,5 +1,7 @@
 module.exports = {
     AddPost(req, res) {
-        console.log(req.body)
+        res.json({ok: 'ok'})
+       // console.log(req.cookie);
+       // console.log(req.user);
     }
 };
