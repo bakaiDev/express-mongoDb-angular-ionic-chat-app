@@ -59,12 +59,32 @@ module.exports = {
             "likes.username" : {$ne : req.user.username}
         }, {
             $push: {likes: {
-                username: req.user.username
+                    username: req.user.username
                 }},
             $inc: {totalLikes: 1}
         })
             .then(() => {
                 res.status(HttpStatus.OK).json({message: 'You liked the post'})
+            }).catch((error) => {
+                return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error occurred'})
+            });
+    },
+
+    async AddComment(req, res) {
+
+        const postId = req.body.postId;
+        await Post.update({
+            _id: postId,
+        }, {
+            $push: {comments: {
+                    userID: req.user._id,
+                    username: req.user.username,
+                    comments: req.user.comments,
+                    createdAt: new Date()
+                }}
+        })
+            .then(() => {
+                res.status(HttpStatus.OK).json({message: 'Comment addded top post'})
             }).catch((error) => {
                 return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error occurred'})
             });
