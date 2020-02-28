@@ -95,7 +95,7 @@ module.exports = {
             .populate('user')
             .populate('comments.userId')
             .then((post) => {
-                res.status(HttpStatus.OK).json({message: 'Post found'})
+                res.status(HttpStatus.OK).json({message: 'Post found', post})
             }).catch(error => {
                 return res.status(HttpStatus.NOT_FOUND).json({message: 'Post not found'})
             });

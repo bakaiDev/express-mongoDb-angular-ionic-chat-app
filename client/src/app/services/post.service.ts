@@ -30,4 +30,8 @@ export class PostService {
       comment
     });
   }
+
+  getPost(postId): Observable<any>  {
+    return this.http.get(`${BASEURL}/post/${postId}` );
+  }
 }
