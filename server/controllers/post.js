@@ -71,15 +71,14 @@ module.exports = {
     },
 
     async AddComment(req, res) {
-
         const postId = req.body.postId;
-        await Post.update({
+        await Post.updateOne({
             _id: postId,
         }, {
             $push: {comments: {
                     userID: req.user._id,
                     username: req.user.username,
-                    comments: req.user.comments,
+                    comment: req.body.comment.comment,
                     createdAt: new Date()
                 }}
         })

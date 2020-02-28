@@ -15,11 +15,14 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.tokenService.getPayload();
-    console.log(this.user)
   }
 
   logout() {
     this.tokenService.deleteToken();
     this.router.navigate(['/']);
+  }
+
+  goToHome() {
+    this.router.navigate(['streams']);
   }
 }

@@ -5,8 +5,18 @@
       <app-side></app-side>
     </div>
     <div class="col s12 m8 l9">
-      <div class="row">
         <div class="col s12 m12 l10">
+          <div class="row">
+            <div class="card">
+              <div class="collection">
+                <ul class="collection-item">
+                  <span class="post">{{post}}</span>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
           <div class="card postDiv">
             <div class="card-content">
 
@@ -27,7 +37,7 @@
           <li class="collection-item avatar">
             <img class="circle" src="http://placehold.it/50x50" alt="">
             <span class="title">{{comment.username}}</span>
-            <p class="time">{{comment.createdAt}}</p>
+            <p class="time">{{timeFromNow(comment.createdAt)}}</p>
             <p class="postComment">{{comment.comment}}</p>
           </li>
         </ul>
