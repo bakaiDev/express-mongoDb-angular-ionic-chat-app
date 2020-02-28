@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {StreamsComponent} from '../components/steams/streams.component';
 import {AuthGuard} from '../services/auth.guard';
+import {CommentsComponent} from '../components/comments/comments.component';
 
 
 const routes: Routes = [
   {
     path: 'streams',
     component: StreamsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'post/:id',
+    component: CommentsComponent,
     canActivate: [AuthGuard]
   }
 ];

@@ -8,11 +8,12 @@ import { PostFormComponent } from '../components/post-form/post-form.component';
 import { PostsComponent } from '../components/posts/posts.component';
 import {PostService} from '../services/post.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import { CommentsComponent } from '../components/comments/comments.component';
 
 
 
 @NgModule({
-  declarations: [StreamsComponent, ToolbarComponent, SideComponent, PostFormComponent, PostsComponent],
+  declarations: [StreamsComponent, ToolbarComponent, SideComponent, PostFormComponent, PostsComponent, CommentsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule

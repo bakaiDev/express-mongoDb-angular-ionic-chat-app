@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import {TokenService} from '../../services/token.service';
 import {PostService} from '../../services/post.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -17,7 +18,8 @@ export class PostsComponent implements OnInit {
   user: any;
 
   constructor(private postService: PostService,
-              private tokenService: TokenService) {
+              private tokenService: TokenService,
+              private router: Router) {
     this.socket = io('http://localhost:3000');
   }
 
@@ -42,7 +44,6 @@ export class PostsComponent implements OnInit {
 
   likePost(post) {
     this.postService.addLike(post).subscribe((data) => {
-      console.log(data);
       this.socket.emit('refresh', {});
     }, error => {
       console.log(error);
@@ -52,5 +53,9 @@ export class PostsComponent implements OnInit {
   checkInLikeArray(arr, username) {
     // _.some from lodash
     return _.some(arr, {username});
+  }
+
+  openCommentsBox(post) {
+    this.router.navigate(['post', post._id]);
   }
 }
