@@ -55,7 +55,8 @@ module.exports = {
 
         const postId = req.body._id;
         await Post.update({
-            _id: postId
+            _id: postId,
+            "likes.username" : {$ne : req.user.username}
         }, {
             $push: {likes: {
                 username: req.user.username
