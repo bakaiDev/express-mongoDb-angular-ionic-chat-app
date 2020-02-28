@@ -10,9 +10,9 @@
           <div class="card postDiv">
             <div class="card-content">
 
-              <form [formGroup]="postForm" novalidate (ngSubmit)="submitPost()">
+              <form [formGroup]="commentForm" novalidate (ngSubmit)="addComment()">
                 <div class="formDiv">
-                  <textarea formControlName="post"  class="materialize-textarea"></textarea>
+                  <textarea formControlName="comment"  class="materialize-textarea"></textarea>
                     <button class="btn postBtn">
                       Add Comments
                     </button>
