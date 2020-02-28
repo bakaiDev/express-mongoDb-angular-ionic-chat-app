@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { CommentsComponent } from '../components/comments/comments.component';
 import {RouterModule} from '@angular/router';
 import { PeopleComponent } from '../components/people/people.component';
+import {UsersService} from '../services/users.service';
 
 
 
@@ -22,6 +23,6 @@ import { PeopleComponent } from '../components/people/people.component';
     RouterModule
   ],
   exports: [StreamsComponent, ToolbarComponent],
-  providers: [TokenService, PostService]
+  providers: [TokenService, PostService, UsersService]
 })
 export class StreamsModule { }
