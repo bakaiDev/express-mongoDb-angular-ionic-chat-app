@@ -5,7 +5,13 @@ const cors = require('cors');
 // const logger = require('morgan');
 
 const app = express();
+
 app.use(cors());
+
+const dbConfig = require('./config/secret');
+
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
 
 app.use((req, res, next)  => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -15,7 +21,7 @@ app.use((req, res, next)  => {
     next();
 });
 
-const dbConfig = require('./config/secret');
+
 
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({extended: true, limit: '50mb'}));
@@ -36,6 +42,6 @@ const post = require('./routes/postRoutes');
 app.use('/api/chatapp', auth);
 app.use('/api/chatapp', post);
 
-app.listen('3000', () => {
+server.listen('3000', () => {
     console.log('Running server on port 3000')
 });
