@@ -88,5 +88,16 @@ module.exports = {
             }).catch((error) => {
                 return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({message: 'Error occurred'})
             });
+    },
+
+    async GetPost(req, res) {
+        await Post.findOne({_id: req.params.id})
+            .populate('user')
+            .populate('comments.userId')
+            .then((post) => {
+                res.status(HttpStatus.OK).json({message: 'Post found'})
+            }).catch(error => {
+                return res.status(HttpStatus.NOT_FOUND).json({message: 'Post not found'})
+            });
     }
 };
