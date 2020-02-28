@@ -9,6 +9,7 @@ import { PostsComponent } from '../components/posts/posts.component';
 import {PostService} from '../services/post.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { CommentsComponent } from '../components/comments/comments.component';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -16,7 +17,8 @@ import { CommentsComponent } from '../components/comments/comments.component';
   declarations: [StreamsComponent, ToolbarComponent, SideComponent, PostFormComponent, PostsComponent, CommentsComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports: [StreamsComponent, ToolbarComponent],
   providers: [TokenService, PostService]
