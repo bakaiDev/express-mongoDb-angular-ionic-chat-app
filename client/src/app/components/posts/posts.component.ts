@@ -36,6 +36,9 @@ export class PostsComponent implements OnInit {
   }
 
   likePost(post) {
-    console.log(post);
+    this.postService.addLike(post).subscribe((data) => {
+      console.log(data);
+      this.socket.emit('refresh', {});
+    }, error => {console.log(error)});
   }
 }
