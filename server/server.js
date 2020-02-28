@@ -39,10 +39,12 @@ mongoose.connect(dbConfig.url, { useUnifiedTopology: true, useNewUrlParser: true
 require('./socket/streams')(io);
 
 const auth = require('./routes/authRoutes');
-const post = require('./routes/postRoutes');
+const posts = require('./routes/postRoutes');
+const users = require('./routes/userRoutes');
 
 app.use('/api/chatapp', auth);
-app.use('/api/chatapp', post);
+app.use('/api/chatapp', posts);
+app.use('/api/chatapp', users);
 
 server.listen('3000', () => {
     console.log('Running server on port 3000')
