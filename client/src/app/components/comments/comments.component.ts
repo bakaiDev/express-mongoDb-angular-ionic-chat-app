@@ -36,6 +36,7 @@ export class CommentsComponent implements OnInit, AfterViewInit {
   addComment() {
     this.postService.addComment(this.postId, this.commentForm.value).subscribe((data) => {
       console.log(data);
+      this.commentForm.reset();
     });
   }
 }

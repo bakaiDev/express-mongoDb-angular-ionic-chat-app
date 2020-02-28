@@ -13,7 +13,7 @@
               <form [formGroup]="commentForm" novalidate (ngSubmit)="addComment()">
                 <div class="formDiv">
                   <textarea formControlName="comment"  class="materialize-textarea"></textarea>
-                    <button class="btn postBtn">
+                    <button class="btn postBtn" [disabled]="!commentForm.valid">
                       Add Comments
                     </button>
                 </div>
